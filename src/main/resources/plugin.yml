@@ -1,0 +1,14 @@
+name: PhantomLimiter
+version: '1.0'
+main: org.karlssonsmp.phantomLimiter.PhantomLimiter
+api-version: '1.21'
+
+commands:
+  phantomlimiter:
+    description: Reload PhantomLimiter configuration
+    usage: /phantomlimiter reload
+
+permissions:
+  phantomlimiter.reload:
+    description: Allows reloading the plugin configuration
+    default: op

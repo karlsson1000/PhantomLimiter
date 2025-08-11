@@ -1,0 +1,4 @@
+# PhantomLimiter Configuration
+
+# Spawn rate (0.0 to 1.0) for a phantom to spawn when it normally would.
+phantom-spawn-rate: 0.25

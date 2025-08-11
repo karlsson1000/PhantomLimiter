@@ -1,0 +1,71 @@
+package org.karlssonsmp.phantomLimiter
+
+import org.bukkit.plugin.java.JavaPlugin
+import org.bukkit.event.Listener
+import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
+import org.bukkit.event.entity.CreatureSpawnEvent
+import org.bukkit.entity.EntityType
+import org.bukkit.command.Command
+import org.bukkit.command.CommandSender
+import kotlin.random.Random
+import org.bstats.bukkit.Metrics
+
+class PhantomLimiter : JavaPlugin(), Listener {
+
+    private var spawnRate: Double = 0.25
+
+    private val prefix = "§9§lᴘʜᴀɴᴛᴏᴍʟɪᴍɪᴛᴇʀ §7» §r"
+
+    override fun onEnable() {
+        saveDefaultConfig()
+
+        spawnRate = config.getDouble("phantom-spawn-rate", 0.25).coerceIn(0.0, 1.0)
+
+        server.pluginManager.registerEvents(this, this)
+
+        val pluginId = 26883
+        Metrics(this, pluginId)
+
+        logger.info("PhantomLimiter enabled! Phantom spawn rate set to ${(spawnRate * 100).toInt()}%.")
+    }
+
+    override fun onDisable() {
+        logger.info("PhantomLimiter disabled!")
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    fun onPhantomSpawn(event: CreatureSpawnEvent) {
+        if (event.entityType != EntityType.PHANTOM) return
+
+        if (event.spawnReason != CreatureSpawnEvent.SpawnReason.NATURAL) return
+
+        if (Random.nextDouble() > spawnRate) {
+            event.isCancelled = true
+        }
+    }
+
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
+        if (command.name.equals("phantomlimiter", ignoreCase = true)) {
+            if (args.isNotEmpty() && args[0].equals("reload", ignoreCase = true)) {
+                if (!sender.hasPermission("phantomlimiter.reload")) {
+                    sender.sendMessage("${prefix}§cYou don't have permission to do that.")
+                    return true
+                }
+
+                reloadConfig()
+                spawnRate = config.getDouble("phantom-spawn-rate", 0.25).coerceIn(0.0, 1.0)
+                sender.sendMessage("${prefix}§aConfig reloaded! Spawn rate: ${(spawnRate * 100).toInt()}%")
+                return true
+            } else {
+                sender.sendMessage("${prefix}§7Usage: /phantomlimiter reload")
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun stripColors(text: String): String {
+        return text.replace(Regex("§[0-9a-fk-or]"), "")
+    }
+}

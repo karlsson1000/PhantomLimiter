@@ -4,12 +4,11 @@
 
 PhantomLimiter lets you control how often phantoms spawn, whether you want peaceful nights or no phantoms at all, the choice is yours.
 
-In vanilla Minecraft, the longer you don't sleep, the higher the chance phantoms will spawn, about 25% after 4 days and around 40% by day 5.
-With PhantomLimiter, you set a fixed spawn rate that replaces the vanilla system entirely.
+In vanilla Minecraft, the longer you don't sleep, the higher the chance phantoms will spawn, about 25% after 4 days and around 40% by day 5. PhantomLimiter filters vanilla phantom spawns, reducing them by your chosen spawn rate.
 
 **Example:**
 - In vanilla Minecraft on day 5, phantoms might have a 40% chance to spawn.
-- With PhantomLimiter set to 25% (default), phantoms will have exactly 25% chance to spawn when vanilla tries to spawn them, regardless of how long players haven't slept.
+- With PhantomLimiter set to 25% (default), only 25% of vanilla phantom spawn attempts will succeed, regardless of how long players haven't slept.
 - Setting it to 10% means only 1 in 10 vanilla phantom spawn attempts will succeed.
   
 ## Features

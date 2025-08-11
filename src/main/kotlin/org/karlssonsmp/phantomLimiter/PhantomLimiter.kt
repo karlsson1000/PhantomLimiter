@@ -34,11 +34,16 @@ class PhantomLimiter : JavaPlugin(), Listener {
         logger.info("PhantomLimiter disabled!")
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     fun onPhantomSpawn(event: CreatureSpawnEvent) {
         if (event.entityType != EntityType.PHANTOM) return
 
-        if (event.spawnReason != CreatureSpawnEvent.SpawnReason.NATURAL) return
+        val validReasons = setOf(
+            CreatureSpawnEvent.SpawnReason.NATURAL,
+            CreatureSpawnEvent.SpawnReason.PATROL
+        )
+
+        if (event.spawnReason !in validReasons) return
 
         if (Random.nextDouble() > spawnRate) {
             event.isCancelled = true
@@ -63,9 +68,5 @@ class PhantomLimiter : JavaPlugin(), Listener {
             }
         }
         return false
-    }
-
-    private fun stripColors(text: String): String {
-        return text.replace(Regex("§[0-9a-fk-or]"), "")
     }
 }

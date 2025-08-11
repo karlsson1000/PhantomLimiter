@@ -1,7 +1,8 @@
 name: PhantomLimiter
 version: '1.0'
 main: org.karlssonsmp.phantomLimiter.PhantomLimiter
-api-version: '1.21'
+api-version: '1.18'
+folia-supported: true
 
 commands:
   phantomlimiter:

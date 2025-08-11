@@ -24,3 +24,7 @@ With PhantomLimiter, you set a fixed spawn rate that replaces the vanilla system
 | Command              | Description                         | Permission              | Usage                        |
 |----------------------|-------------------------------------|-------------------------|------------------------------|
 | /phantomlimiter reload | Reloads the PhantomLimiter config. | `phantomlimiter.reload` | `/phantomlimiter reload`     |
+
+---
+
+![PhantomLimiter](https://cdn.modrinth.com/data/d5YylCDk/images/7edff8838cb454de5ff6b0d0e071071c8cf5ed32.png)

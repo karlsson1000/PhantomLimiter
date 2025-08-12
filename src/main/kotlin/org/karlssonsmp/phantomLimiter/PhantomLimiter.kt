@@ -8,11 +8,12 @@ import org.bukkit.event.entity.CreatureSpawnEvent
 import org.bukkit.entity.EntityType
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
-import kotlin.random.Random
+import java.util.concurrent.ThreadLocalRandom
 import org.bstats.bukkit.Metrics
 
 class PhantomLimiter : JavaPlugin(), Listener {
 
+    @Volatile
     private var spawnRate: Double = 0.25
 
     private val prefix = "§9§lᴘʜᴀɴᴛᴏᴍʟɪᴍɪᴛᴇʀ §7» §r"
@@ -45,7 +46,7 @@ class PhantomLimiter : JavaPlugin(), Listener {
 
         if (event.spawnReason !in validReasons) return
 
-        if (Random.nextDouble() > spawnRate) {
+        if (ThreadLocalRandom.current().nextDouble() > spawnRate) {
             event.isCancelled = true
         }
     }

@@ -1,5 +1,5 @@
 name: PhantomLimiter
-version: '1.0'
+version: '1.1'
 main: org.karlssonsmp.phantomLimiter.PhantomLimiter
 api-version: '1.18'
 folia-supported: true

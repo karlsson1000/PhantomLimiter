@@ -8,3 +8,6 @@
 # Set to 1.0 for normal phantom spawning (vanilla behavior)
 
 phantom-spawn-rate: 0.25
+
+# Enable bStats metrics
+metrics: true

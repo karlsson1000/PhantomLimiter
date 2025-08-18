@@ -22,7 +22,7 @@ class PhantomLimiter : JavaPlugin(), Listener {
         saveDefaultConfig()
 
         spawnRate = config.getDouble("phantom-spawn-rate", 0.25).coerceIn(0.0, 1.0)
-        val metricsEnabled = config.getBoolean("enable-metrics", true)
+        val metricsEnabled = config.getBoolean("metrics", true)
 
         server.pluginManager.registerEvents(this, this)
 

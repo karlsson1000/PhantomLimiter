@@ -1,5 +1,5 @@
 name: PhantomReducer
-version: '1.1'
+version: '1.2'
 main: org.karlssonsmp.phantomReducer.PhantomReducer
 api-version: '1.18'
 folia-supported: true

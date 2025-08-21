@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PhantomLimiter.iml" filepath="$PROJECT_DIR$/PhantomLimiter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhantomReducer.iml" filepath="$PROJECT_DIR$/PhantomReducer.iml" />
     </modules>
   </component>
 </project>

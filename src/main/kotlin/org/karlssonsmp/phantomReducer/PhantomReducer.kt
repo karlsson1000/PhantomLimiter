@@ -1,4 +1,4 @@
-package org.karlssonsmp.phantomLimiter
+package org.karlssonsmp.phantomReducer
 
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.event.Listener
@@ -11,12 +11,12 @@ import org.bukkit.command.CommandSender
 import java.util.concurrent.ThreadLocalRandom
 import org.bstats.bukkit.Metrics
 
-class PhantomLimiter : JavaPlugin(), Listener {
+class PhantomReducer : JavaPlugin(), Listener {
 
     @Volatile
     private var spawnRate: Double = 0.25
 
-    private val prefix = "§9§lᴘʜᴀɴᴛᴏᴍʟɪᴍɪᴛᴇʀ §7» §r"
+    private val prefix = "§9§lᴘʜᴀɴᴛᴏᴍʀᴇᴅᴜᴄᴇʀ §7» §r"
 
     override fun onEnable() {
         saveDefaultConfig()
@@ -27,15 +27,15 @@ class PhantomLimiter : JavaPlugin(), Listener {
         server.pluginManager.registerEvents(this, this)
 
         if (metricsEnabled) {
-            val pluginId = 26883
+            val pluginId = 26992
             Metrics(this, pluginId)
         }
 
-        logger.info("PhantomLimiter enabled! Phantom spawn rate set to ${(spawnRate * 100).toInt()}%.")
+        logger.info("PhantomReducer enabled! Phantom spawn rate set to ${(spawnRate * 100).toInt()}%.")
     }
 
     override fun onDisable() {
-        logger.info("PhantomLimiter disabled!")
+        logger.info("PhantomReducer disabled!")
     }
 
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
@@ -55,9 +55,9 @@ class PhantomLimiter : JavaPlugin(), Listener {
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
-        if (command.name.equals("phantomlimiter", ignoreCase = true)) {
+        if (command.name.equals("phantomreducer", ignoreCase = true)) {
             if (args.isNotEmpty() && args[0].equals("reload", ignoreCase = true)) {
-                if (!sender.hasPermission("phantomlimiter.reload")) {
+                if (!sender.hasPermission("phantomreducer.reload")) {
                     sender.sendMessage("${prefix}§cYou don't have permission to do that.")
                     return true
                 }
@@ -67,7 +67,7 @@ class PhantomLimiter : JavaPlugin(), Listener {
                 sender.sendMessage("${prefix}§aConfig reloaded! Spawn rate: ${(spawnRate * 100).toInt()}%")
                 return true
             } else {
-                sender.sendMessage("${prefix}§7Usage: /phantomlimiter reload")
+                sender.sendMessage("${prefix}§7Usage: /phantomreducer reload")
                 return true
             }
         }
